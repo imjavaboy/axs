@@ -5,4 +5,32 @@
 <!--接口名称-->
 <mapper namespace="com.gbq.axs.axsxcs.mapper.AccountMapper">
 
+    <update id="editAccount">
+        UPDATE account set
+        <if test="account.username !== null">
+        username = #{account.username}
+        </if>
+        <if test="account.sex !== null">
+            sex = #{account.sex}
+        </if>
+        <if test="account.birthday !== null">
+            birthday = #{account.birthday}
+        </if>
+        <if test="account.headimg !== null">
+            headimg = #{account.headimg}
+        </if>
+        <if test="account.department !== null">
+            department = #{account.department}
+        </if>
+        <if test="account.address !== null">
+            address = #{account.address}
+        </if>
+        <if test="account.city !== null">
+            city = #{account.city}
+        </if>
+    </update>
+
+    <select id="getEditAccount" resultType="com.gbq.axs.axsxcs.pojo.Account">
+        select * from account where id = #{id};
+    </select>
 </mapper>

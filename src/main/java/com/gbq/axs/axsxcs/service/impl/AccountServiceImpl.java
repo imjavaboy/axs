@@ -42,4 +42,12 @@ public class AccountServiceImpl implements AccountService {
         Account account = accountMapper.selectOne(new QueryWrapper<Account>().eq("id", id));
         return ResBean.success("查询成功",account);
     }
+
+    /*修改用户*/
+    @Override
+    public ResBean editAccount(Account account) {
+        accountMapper.editAccount(account);
+        Account editAccount = accountMapper.getEditAccount(account.getId());
+        return ResBean.success("修改成功",editAccount);
+    }
 }

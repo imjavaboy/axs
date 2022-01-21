@@ -74,4 +74,11 @@ public class AccountController {
 
     }
 
+    @ApiOperation("获取用户信息")
+    @GetMapping("/editAccount")
+    public ResBean editAccount(@RequestBody Account account){
+        return accountService.editAccount(account);
+    }
+
+
 }

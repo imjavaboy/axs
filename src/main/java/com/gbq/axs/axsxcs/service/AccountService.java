@@ -9,4 +9,6 @@ public interface AccountService {
     Integer insertOne(Account account);
 
     ResBean getAccount(Integer id);
+
+    ResBean editAccount(Account account);
 }
