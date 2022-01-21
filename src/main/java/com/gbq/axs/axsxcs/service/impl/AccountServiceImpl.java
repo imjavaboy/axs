@@ -48,6 +48,8 @@ public class AccountServiceImpl implements AccountService {
     public ResBean editAccount(Account account) {
         accountMapper.editAccount(account);
         Account editAccount = accountMapper.getEditAccount(account.getId());
+        editAccount.setOpenId(null);
+        editAccount.setSessionKey(null);
         return ResBean.success("修改成功",editAccount);
     }
 }
