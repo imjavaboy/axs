@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -17,5 +18,5 @@ public class Comments {
     private Integer uid;
     private Integer postingId;
     private String content;
-    private LocalDate time;
+    private Date time;
 }

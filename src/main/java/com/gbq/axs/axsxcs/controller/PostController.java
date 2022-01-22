@@ -16,14 +16,14 @@ import java.util.List;
 
 @Api(tags = "帖子增删改查")
 @RestController
-@RequestMapping("/account")
+@RequestMapping("/posting")
 public class PostController {
 
     @Autowired
     private PostService postService;
 
     @ApiOperation("查询所有帖子")
-    @PostMapping("/login")
+    @PostMapping("/getAllPosting")
     public List<Posting> getAllPosting(@RequestBody Posting posting){
         return postService.grtAllPosting(posting);
     }

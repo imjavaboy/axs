@@ -1,7 +1,6 @@
 package com.gbq.axs.axsxcs.mapper;
 
 import com.gbq.axs.axsxcs.pojo.Posting;
-import javafx.geometry.Pos;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

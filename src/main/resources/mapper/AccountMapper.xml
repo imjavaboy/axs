@@ -7,25 +7,25 @@
 
     <update id="editAccount">
         UPDATE account set
-        <if test="account.username !== null">
+        <if test="account.username != null">
         username = #{account.username}
         </if>
-        <if test="account.sex !== null">
+        <if test="account.sex != null">
             sex = #{account.sex}
         </if>
-        <if test="account.birthday !== null">
+        <if test="account.birthday != null">
             birthday = #{account.birthday}
         </if>
-        <if test="account.headimg !== null">
+        <if test="account.headimg != null">
             headimg = #{account.headimg}
         </if>
-        <if test="account.department !== null">
+        <if test="account.department != null">
             department = #{account.department}
         </if>
-        <if test="account.address !== null">
+        <if test="account.address != null">
             address = #{account.address}
         </if>
-        <if test="account.city !== null">
+        <if test="account.city != null">
             city = #{account.city}
         </if>
     </update>

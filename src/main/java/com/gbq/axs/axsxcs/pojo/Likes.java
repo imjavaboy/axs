@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import sun.util.resources.LocaleData;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @TableName("likes")
@@ -15,7 +17,7 @@ public class Likes {
     private Integer id;
     private Integer uid;
     private Integer postingId;
-    private LocaleData time;
+    private Date time;
 
     private String userName;
 }

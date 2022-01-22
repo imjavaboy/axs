@@ -18,8 +18,8 @@
             <result column="likes_uid" property="uid"/>
             <result column="likes_name" property="userName"/>
         </collection>
-        <collection property="tags" ofType="java.lang.StringBuilder">
-            <result column="tagName" property="value"/>
+        <collection property="tags" ofType="java.lang.String">
+            <result column="tagName"/>
         </collection>
     </resultMap>
     <select id="getAllPosting" resultType="com.gbq.axs.axsxcs.pojo.Posting">

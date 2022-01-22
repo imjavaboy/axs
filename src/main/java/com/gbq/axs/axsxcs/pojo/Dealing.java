@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -14,7 +15,7 @@ import java.time.LocalDate;
 public class Dealing {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
-    private LocalDate time;
+    private Date time;
     private Integer uid;
     private String content;
     private String photo;

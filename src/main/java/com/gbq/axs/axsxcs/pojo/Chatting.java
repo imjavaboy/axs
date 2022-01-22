@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -17,7 +18,7 @@ public class Chatting {
     private Integer buyUserId;
     private Integer havUserId;
     private String content;
-    private LocalDate time;
+    private Date time;
     private String who;
     private Integer unread;
 }

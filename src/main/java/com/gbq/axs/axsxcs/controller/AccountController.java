@@ -1,6 +1,6 @@
 package com.gbq.axs.axsxcs.controller;
 
-import com.alibaba.fastjson.JSONObject;
+
 import com.gbq.axs.axsxcs.config.jwt.JwtUtils;
 import com.gbq.axs.axsxcs.pojo.Account;
 import com.gbq.axs.axsxcs.pojo.ResBean;
@@ -12,8 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,7 +55,7 @@ public class AccountController {
             account.setSessionKey(sessionKey);
             account.setUsername(wxUser.getNickName());
             account.setSex(wxUser.getGender());
-            account.setCreteTime(LocalDate.now());
+            account.setCreteTime(new Date());
             accountService.insertOne(account);
         }
         String token = jwtUtils.generateToken(account);

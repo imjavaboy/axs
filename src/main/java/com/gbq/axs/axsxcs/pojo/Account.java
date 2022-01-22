@@ -10,8 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -41,6 +40,6 @@ public class Account implements Serializable {
     @ApiModelProperty(value = "城市")
     private String city;
     @ApiModelProperty(value = "创建时间")
-    private LocalDate creteTime;
+    private Date creteTime;
 
 }
