@@ -13,9 +13,9 @@ import java.time.LocalDate;
 @TableName("comments")
 public class Comments {
     @TableId(value = "id", type = IdType.AUTO)
-    private long id;
-    private String uid;
-    private long postingId;
+    private Integer id;
+    private Integer uid;
+    private Integer postingId;
     private String content;
     private LocalDate time;
 }

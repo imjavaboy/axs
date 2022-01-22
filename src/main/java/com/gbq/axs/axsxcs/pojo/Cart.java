@@ -13,8 +13,8 @@ import java.time.LocalDate;
 @TableName("cart")
 public class Cart {
     @TableId(value = "id", type = IdType.AUTO)
-    private long id;
+    private Integer id;
     private LocalDate time;
-    private String uid;
-    private long dealingId;
+    private Integer uid;
+    private Integer dealingId;
 }

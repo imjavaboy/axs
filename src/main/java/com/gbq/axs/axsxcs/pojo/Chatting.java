@@ -13,11 +13,11 @@ import java.time.LocalDate;
 @TableName("chatting")
 public class Chatting {
     @TableId(value = "id", type = IdType.AUTO)
-    private long id;
-    private int buyUserId;
-    private int havUserId;
+    private Integer id;
+    private Integer buyUserId;
+    private Integer havUserId;
     private String content;
     private LocalDate time;
     private String who;
-    private int unread;
+    private Integer unread;
 }

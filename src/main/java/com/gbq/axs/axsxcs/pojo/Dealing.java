@@ -13,15 +13,15 @@ import java.time.LocalDate;
 @TableName("dealing")
 public class Dealing {
     @TableId(value = "id", type = IdType.AUTO)
-    private long id;
+    private Integer id;
     private LocalDate time;
-    private String uid;
+    private Integer uid;
     private String content;
     private String photo;
-    private int type;
+    private Integer type;
     private double price;
     private String exchange;
     private String category;
-    private int status;
+    private Integer status;
     private String itemName;
 }

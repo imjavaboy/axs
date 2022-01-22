@@ -12,8 +12,10 @@ import sun.util.resources.LocaleData;
 @TableName("likes")
 public class Likes {
     @TableId(value = "id", type = IdType.AUTO)
-    private long id;
-    private String uid;
-    private int postingId;
+    private Integer id;
+    private Integer uid;
+    private Integer postingId;
     private LocaleData time;
+
+    private String userName;
 }

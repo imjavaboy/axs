@@ -9,8 +9,37 @@
         <id column="id" property="id"/>
         <result column="time" property="time"/>
         <result column="content" property="content"/>
+        <result column="photo" property="photo"/>
+        <result column="uid" property="uid"/>
+        <result column="likes_num" property="likesNum"/>
+        <collection property="likes" ofType="com.gbq.axs.axsxcs.pojo.Likes">
+            <id column="likes_id" property="id"/>
+            <result column="likes_time" property="time"/>
+            <result column="likes_uid" property="uid"/>
+            <result column="likes_name" property="userName"/>
+        </collection>
+        <collection property="tags" ofType="java.lang.StringBuilder">
+            <result column="tagName" property="value"/>
+        </collection>
     </resultMap>
     <select id="getAllPosting" resultType="com.gbq.axs.axsxcs.pojo.Posting">
         select
+        e0.id,
+        e0.time ,
+        e0.content,
+        e0.photo,
+        e0.uid,
+        count(e3) likes_num,
+        e3.time likes_time,
+        e4.userName like_name,
+        e4.id like_uid,
+        e3.id like_id,
+        e2.tagName
+        from posting e0
+        LEFT JOIN tags_posting e1 on e1.postingId = e0.id,
+        LEFT JOIN tags e2 on e2.id = e1.tagsId,
+        LEFT JOIN likes e3 on e3.posting = e0.id,
+        LEFT JOIN account e4 om e4.id = e3.uid,
+        WHERE e0.uid = #{posting.uid}
     </select>
 </mapper>
