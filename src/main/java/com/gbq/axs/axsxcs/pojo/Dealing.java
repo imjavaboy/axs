@@ -6,14 +6,16 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Data
 @AllArgsConstructor
 @TableName("dealing")
 public class Dealing {
     @TableId(value = "id", type = IdType.AUTO)
     private long id;
-    private String time;
-    private String username;
+    private LocalDate time;
+    private String uid;
     private String content;
     private String photo;
     private int type;
@@ -21,5 +23,5 @@ public class Dealing {
     private String exchange;
     private String category;
     private int status;
-    private String itemname;
+    private String itemName;
 }

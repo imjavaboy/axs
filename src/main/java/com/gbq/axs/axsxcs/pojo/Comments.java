@@ -6,14 +6,16 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Data
 @AllArgsConstructor
 @TableName("comments")
 public class Comments {
     @TableId(value = "id", type = IdType.AUTO)
     private long id;
-    private String username;
-    private long posting;
+    private String uid;
+    private long postingId;
     private String content;
-    private String time;
+    private LocalDate time;
 }

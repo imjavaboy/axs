@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import sun.util.resources.LocaleData;
 
 @Data
 @AllArgsConstructor
@@ -12,7 +13,7 @@ import lombok.Data;
 public class Likes {
     @TableId(value = "id", type = IdType.AUTO)
     private long id;
-    private String username;
-    private long posting;
-    private String time;
+    private String uid;
+    private int postingId;
+    private LocaleData time;
 }

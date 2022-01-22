@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import sun.util.resources.LocaleData;
 
 @Data
 @AllArgsConstructor
@@ -12,11 +13,9 @@ import lombok.Data;
 public class Posting {
     @TableId(value = "id", type = IdType.AUTO)
     private long id;
-    private String time;
-    private String username;
+    private LocaleData time;
+    private String uid;
     private String content;
     private String photo;
-    private int likes;
-    private int comments;
-    private String tag;
+    private String tagId;
 }

@@ -12,6 +12,6 @@ import lombok.Data;
 public class Collecting {
     @TableId(value = "id", type = IdType.AUTO)
     private long id;
-    private String username;
-    private long dealing;
+    private String uid;
+    private long dealingId;
 }

@@ -12,9 +12,8 @@ import lombok.Data;
 public class Buying {
     @TableId(value = "id", type = IdType.AUTO)
     private long id;
-    private String ftime;
     private String time;
-    private String username;
-    private long dealing;
+    private String uid;
+    private long dealingId;
     private String status;
 }
