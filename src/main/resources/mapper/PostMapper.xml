@@ -41,5 +41,11 @@
         LEFT JOIN likes e3 on e3.posting = e0.id,
         LEFT JOIN account e4 om e4.id = e3.uid,
         WHERE e0.uid = #{posting.uid}
+        limit #{posting.start},#{posting.length};
+    </select>
+    <select id="getPostingNum" resultType="java.lang.Integer">
+        select count(*)
+        from posting e0
+        WHERE e0.uid = #{posting.uid};
     </select>
 </mapper>

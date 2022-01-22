@@ -24,4 +24,7 @@ public class Posting {
 
     private List<StringBuffer> tags;
     private Integer likesNum;
+
+    private Integer start;
+    private Integer length;
 }

@@ -17,6 +17,8 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Posting> grtAllPosting(Posting posting) {
+        Integer num = postMapper.getPostingNum(posting);
+        posting.setLength(Math.min(num - posting.getStart(), 10));
         return postMapper.getAllPosting(posting);
     }
 }
