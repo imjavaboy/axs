@@ -165,7 +165,7 @@ public class JwtUtils {
      *@Param
      *@return
      */
-    private Date getExpiredDateFromToken(String token){
+    public Date getExpiredDateFromToken(String token){
         Claims claims = getClaimsFromToken(token);
         System.out.println(claims);
         return claims.getExpiration();

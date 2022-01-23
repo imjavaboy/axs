@@ -3,6 +3,7 @@ package com.gbq.axs.axsxcs.pojo;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -26,6 +27,7 @@ public class Account implements Serializable {
     @ApiModelProperty(value = "性别")
     private int sex;
     @ApiModelProperty(value = "出生日期")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
     private String birthday;
     @ApiModelProperty(value = "头像")
     private String headimg;

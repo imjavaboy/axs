@@ -1,8 +1,12 @@
 package com.gbq.axs.axsxcs.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gbq.axs.axsxcs.mapper.PostMapper;
 import com.gbq.axs.axsxcs.pojo.Posting;
+import com.gbq.axs.axsxcs.pojo.ResPageBean;
 import com.gbq.axs.axsxcs.service.PostService;
+import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +20,12 @@ public class PostServiceImpl implements PostService {
     private PostMapper postMapper;
 
     @Override
-    public List<Posting> grtAllPosting(Posting posting) {
-        Integer num = postMapper.getPostingNum(posting);
-        posting.setLength(Math.min(num - posting.getStart(), 10));
-        return postMapper.getAllPosting(posting);
+    public ResPageBean getAllPosting(Integer currentPage) {
+        //开启分页
+        Page<Posting> page = new Page<>(currentPage, 10);
+        IPage<Posting> postingIPage = postMapper.getAllPosting(page);
+        System.out.println("及技术计算机技术"+postingIPage);
+        ResPageBean resPageBean = new ResPageBean(postingIPage.getTotal(), postingIPage.getRecords());
+        return resPageBean;
     }
 }

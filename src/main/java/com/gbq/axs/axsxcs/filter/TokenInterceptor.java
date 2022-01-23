@@ -9,6 +9,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,9 +27,12 @@ public class TokenInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         response.setCharacterEncoding("utf-8");
         String token = request.getHeader("Bearer");
+        System.out.println("你好"+token);
         Map<String,Object> map = new HashMap<>();
         if (token != null){
             try {
+                Date expiredDateFromToken = jwtUtils.getExpiredDateFromToken(token);
+                System.out.println(expiredDateFromToken);
                 if (jwtUtils.isTokenExpired(token)){
                     map.put("msg","当前登录已经过期");
                     map.put("code","1000");

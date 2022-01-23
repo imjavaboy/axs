@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ResBean {
-    private Integer code;
+    private long code;
     private String message;
     private Object obj;
 

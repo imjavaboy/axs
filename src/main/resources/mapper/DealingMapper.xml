@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--接口名称-->
+<mapper namespace="com.gbq.axs.axsxcs.mapper.DealingMapper">
+
+    <select id="getAllDealing" resultType="com.gbq.axs.axsxcs.pojo.Dealing">
+        select * from dealing
+    </select>
+    <select id="getDealingById" resultType="com.gbq.axs.axsxcs.pojo.Dealing">
+
+        SELECT
+            dealing.*,
+            account.headimg,
+            account.username
+        FROM
+            dealing,
+            account
+        WHERE
+            dealing.uid = account.id
+            AND dealing.id = #{id}
+    </select>
+
+</mapper>

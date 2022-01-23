@@ -9,7 +9,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface AccountMapper extends BaseMapper<Account> {
-    public void editAccount(Account account);
-
-    public Account getEditAccount(Integer id);
 }

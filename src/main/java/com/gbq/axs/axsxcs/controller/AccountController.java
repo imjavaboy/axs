@@ -73,11 +73,4 @@ public class AccountController {
 
     }
 
-    @ApiOperation("获取用户信息")
-    @PostMapping("/editAccount")
-    public ResBean editAccount(@RequestBody Account account){
-        return accountService.editAccount(account);
-    }
-
-
 }
