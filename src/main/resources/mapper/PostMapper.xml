@@ -4,23 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--接口名称-->
 <mapper namespace="com.gbq.axs.axsxcs.mapper.PostMapper">
-
-    <resultMap id="getAllPosting" type="com.gbq.axs.axsxcs.pojo.Posting">
-        <id column="id" property="id"/>
-        <result column="time" property="time"/>
-        <result column="content" property="content"/>
-        <result column="photo" property="photo"/>
-        <result column="uid" property="uid"/>
-        <result column="username" property="username"/>
-        <result column="headimg" property="headimg"/>
-        <result column="likesNum" property="likesNum"/>
-        <result column="headimg" property="headimg"/>
-        <result column="commentNum" property="commentNum"/>
-        <collection property="tags" ofType="com.gbq.axs.axsxcs.pojo.Tags">
-            <id column="tid" property="id"/>
-            <result column="tagName" property="tagName"/>
-        </collection>
-    </resultMap>
     <select id="getAllPosting" resultMap="getAllPosting">
       SELECT
         pos.*,
