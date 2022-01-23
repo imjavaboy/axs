@@ -14,5 +14,4 @@ public interface DealingMapper extends BaseMapper<Dealing> {
 
     Dealing getDealingById(Integer id);
 
-    List<Dealing> searchDealing(String keyword);
 }

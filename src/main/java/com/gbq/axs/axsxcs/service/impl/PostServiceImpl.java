@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -23,12 +24,13 @@ public class PostServiceImpl implements PostService {
     @Override
     public ResPageBean getAllPosting(Integer currentPage) {
         //开启分页
-        Page<Posting> page = new Page<>(currentPage, 10);
-        IPage<Posting> postingIPage = postMapper.getAllPosting(page);
-        System.out.println("及技术计算机技术"+postingIPage);
-        ResPageBean resPageBean = new ResPageBean(postingIPage.getTotal(), postingIPage.getRecords());
+//        Page<Posting> page = new Page<>(currentPage, 10);
+        List<Posting> postingIPage = postMapper.getAllPosting();
+        List<Posting> collect = postingIPage.stream().skip((currentPage - 1) * 10).limit(10).collect(Collectors.toList());
+
+        ResPageBean resPageBean = new ResPageBean(postingIPage.size(), collect);
         return resPageBean;
-    }
+}
 
     /*获取帖子详情*/
     @Override

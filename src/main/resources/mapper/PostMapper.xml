@@ -29,23 +29,22 @@
         </collection>
     </resultMap>
     <select id="getAllPosting" resultMap="getAllPosting">
-     SELECT
-        pos.*,
-        tags.id tid,
-        tags.tagName,
-        account.id aid,
-        account.username likeUsername
-    FROM
-        posting pos,
-        tags,
-        tagpos tps,
-        likes,
-        account
-    WHERE
-        tps.pid = pos.id
-        AND tags.id = tps.tid
-        AND likes.postingId = pos.id
-        AND likes.uid = account.id
+    SELECT
+            pos.*,
+            tags.id tid,
+            tags.tagName,
+            account.id aid,
+            account.username likeUsername
+        FROM
+            posting pos
+            LEFT JOIN likes ON likes.postingId = pos.id
+            LEFT JOIN account ON likes.uid = account.id
+            JOIN tags
+             JOIN tagpos tps
+        WHERE
+            tps.pid = pos.id
+        AND
+            tags.id = tps.tid
 
 
     </select>

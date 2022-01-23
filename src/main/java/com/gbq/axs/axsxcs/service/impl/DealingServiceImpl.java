@@ -29,7 +29,7 @@ public class DealingServiceImpl implements DealingService {
         //开启分页
         Page<Dealing> page = new Page<>(currentPage, 10);
         IPage<Dealing> postingIPage = dealingMapper.getAllDealing(page);
-        ResPageBean resPageBean = new ResPageBean(postingIPage.getTotal(), postingIPage.getRecords());
+        ResPageBean resPageBean = new ResPageBean(postingIPage.getRecords().size(), postingIPage.getRecords());
         return resPageBean;
     }
 

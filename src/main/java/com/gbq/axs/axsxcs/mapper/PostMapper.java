@@ -15,7 +15,7 @@ import java.util.List;
 public interface PostMapper extends BaseMapper<Posting> {
 
 
-    IPage<Posting> getAllPosting(Page<Posting> page);
+   List<Posting> getAllPosting();
 
     Posting getPostingById(Integer id);
 }

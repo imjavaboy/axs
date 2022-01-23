@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ResPageBean {
     //总条数
-    private Long total;
+    private Integer total;
     //数据list
     private List<?> data;
 }
