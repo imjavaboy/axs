@@ -5,7 +5,7 @@
 <!--接口名称-->
 <mapper namespace="com.gbq.axs.axsxcs.mapper.PostMapper">
 
-    <resultMap id="getAllPosting" type="com.gbq.axs.axsxcs.pojo.Posting">
+    <resultMap id="baseMap" type="com.gbq.axs.axsxcs.pojo.Posting">
         <id column="id" property="id"/>
         <result column="time" property="time"/>
         <result column="content" property="content"/>
@@ -16,25 +16,67 @@
         <result column="likesNum" property="likesNum"/>
         <result column="headimg" property="headimg"/>
         <result column="commentNum" property="commentNum"/>
+    </resultMap>
+
+    <resultMap id="getAllPosting" type="com.gbq.axs.axsxcs.pojo.Posting" extends="baseMap">
         <collection property="tags" ofType="com.gbq.axs.axsxcs.pojo.Tags">
             <id column="tid" property="id"/>
             <result column="tagName" property="tagName"/>
         </collection>
+        <collection property="likeAccounts" ofType="com.gbq.axs.axsxcs.pojo.Account">
+            <id column="aid" property="id"/>
+            <result column="likeUsername" property="username" />
+        </collection>
     </resultMap>
     <select id="getAllPosting" resultMap="getAllPosting">
-      SELECT
+     SELECT
         pos.*,
         tags.id tid,
-        tags.tagName
+        tags.tagName,
+        account.id aid,
+        account.username likeUsername
     FROM
         posting pos,
         tags,
-        tagpos tps
+        tagpos tps,
+        likes,
+        account
     WHERE
         tps.pid = pos.id
         AND tags.id = tps.tid
+        AND likes.postingId = pos.id
+        AND likes.uid = account.id
 
 
+    </select>
+
+    <resultMap id="postingWithComment" type="com.gbq.axs.axsxcs.pojo.Posting" extends="baseMap">
+        <collection property="comments" ofType="com.gbq.axs.axsxcs.pojo.Comments">
+            <id column="cid" property="id"/>
+            <result column="comTime" property="time"/>
+            <result column="context" property="context"/>
+            <association property="account" javaType="com.gbq.axs.axsxcs.pojo.Account">
+                <result column="cusername" property="username"/>
+                <result column="cheadimg" property="headimg"/>
+            </association>
+        </collection>
+    </resultMap>
+    <select id="getPostingById" resultMap="postingWithComment">
+       SELECT
+            posting.*,
+            comments.id cid,
+            comments.time comTime,
+            comments.context,
+            account.username cusername,
+            account.headimg cheadimg
+        FROM
+            posting,
+            comments,
+            account
+        WHERE
+            posting.id = comments.postingId
+            AND comments.uid = account.id
+            AND posting.id = #{id}
     </select>
 
 

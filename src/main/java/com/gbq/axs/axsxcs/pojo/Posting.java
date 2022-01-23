@@ -4,7 +4,9 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.models.auth.In;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +29,7 @@ public class Posting implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
     @ApiModelProperty("创建时间")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
     private LocalDate time;
     private Integer uid;
     @ApiModelProperty("帖子内容")
@@ -48,5 +51,13 @@ public class Posting implements Serializable {
     @ApiModelProperty("所有的标签")
     @TableField(exist = false)
     private List<Tags> tags;
+
+    @ApiModelProperty("所有的评论")
+    @TableField(exist = false)
+    private List<Comments> comments;
+
+    @ApiModelProperty("所有点赞人")
+    @TableField(exist = false)
+    private List<Account> likeAccounts;
 
 }

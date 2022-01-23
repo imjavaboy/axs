@@ -3,6 +3,7 @@ package com.gbq.axs.axsxcs.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gbq.axs.axsxcs.pojo.Posting;
+import com.gbq.axs.axsxcs.pojo.ResBean;
 import com.gbq.axs.axsxcs.pojo.ResPageBean;
 import com.gbq.axs.axsxcs.service.PostService;
 import io.swagger.annotations.Api;
@@ -25,6 +26,11 @@ public class PostController {
     @GetMapping("/getAllPosting")
     public ResPageBean getAllPosting(@RequestParam(defaultValue = "1") Integer currentPage){
       return postService.getAllPosting(currentPage);
+    }
 
+    @ApiOperation("获取帖子详情")
+    @GetMapping("/getPostingById")
+    public ResBean getPostingById(Integer id){
+        return postService.getPostingById(id);
     }
 }

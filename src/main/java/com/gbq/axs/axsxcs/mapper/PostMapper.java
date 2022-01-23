@@ -16,4 +16,6 @@ public interface PostMapper extends BaseMapper<Posting> {
 
 
     IPage<Posting> getAllPosting(Page<Posting> page);
+
+    Posting getPostingById(Integer id);
 }
