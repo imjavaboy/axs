@@ -27,9 +27,45 @@
             <id column="aid" property="id"/>
             <result column="likeUsername" property="username" />
         </collection>
+        <collection property="comments" ofType="com.gbq.axs.axsxcs.pojo.Comments">
+            <id column="cid" property="id"/>
+            <result column="comTime" property="time"/>
+            <result column="context" property="context"/>
+            <association property="account" javaType="com.gbq.axs.axsxcs.pojo.Account">
+                <result column="cusername" property="username"/>
+                <result column="cheadimg" property="headimg"/>
+            </association>
+        </collection>
     </resultMap>
+    <insert id="doLike">
+        insert into likes(uid,postingId,time) values (#{uid},#{pid},#{now})
+    </insert>
+    <update id="updateLikesNum">
+        update posting set likesNum = likesNum+1
+        where id = #{pid}
+    </update>
+    <update id="updateLikesNum2">
+         update posting set likesNum = likesNum-1
+        where id = #{pid}
+    </update>
+    <update id="updateCommentNum">
+         update posting set commentNum = commentNum+1
+        where id = #{pid}
+    </update>
+    <update id="updateCommentNum2">
+         update posting set commentNum = commentNum-1
+        where id = #{pid}
+    </update>
+    <delete id="dontLike">
+        delete from
+        likes
+        where
+        uid = #{uid}
+        and
+        postingId = #{pid}
+    </delete>
     <select id="getAllPosting" resultMap="getAllPosting">
-    SELECT
+       SELECT
             pos.*,
             tags.id tid,
             tags.tagName,
@@ -39,17 +75,18 @@
             posting pos
             LEFT JOIN likes ON likes.postingId = pos.id
             LEFT JOIN account ON likes.uid = account.id
-            JOIN tags
-             JOIN tagpos tps
-        WHERE
-            tps.pid = pos.id
-        AND
-            tags.id = tps.tid
-
+            LEFT JOIN tagpos tps ON tps.pid = pos.id
+            LEFT JOIN tags ON tags.id = tps.tid
+        ORDER BY
+            pos.id
 
     </select>
 
     <resultMap id="postingWithComment" type="com.gbq.axs.axsxcs.pojo.Posting" extends="baseMap">
+        <collection property="tags" ofType="com.gbq.axs.axsxcs.pojo.Tags">
+            <id column="tid" property="id"/>
+            <result column="tagName" property="tagName"/>
+        </collection>
         <collection property="comments" ofType="com.gbq.axs.axsxcs.pojo.Comments">
             <id column="cid" property="id"/>
             <result column="comTime" property="time"/>
@@ -61,21 +98,78 @@
         </collection>
     </resultMap>
     <select id="getPostingById" resultMap="postingWithComment">
-       SELECT
+      SELECT
             posting.*,
             comments.id cid,
             comments.time comTime,
             comments.context,
             account.username cusername,
-            account.headimg cheadimg
+            account.headimg cheadimg,
+             tags.id tid,
+            tags.tagName
         FROM
-            posting,
-            comments,
-            account
+            posting
+            left join comments on posting.id = comments.postingId
+            left join account on  comments.uid = account.id
+            LEFT JOIN tagpos tps ON tps.pid = posting.id
+            LEFT JOIN tags ON tags.id = tps.tid
         WHERE
-            posting.id = comments.postingId
-            AND comments.uid = account.id
-            AND posting.id = #{id}
+             posting.id = #{id}
+    </select>
+    <select id="getMyLike" resultMap="getAllPosting">
+       SELECT
+            posting.*,
+            tags.id tid,
+            tags.tagName
+        FROM
+            likes,
+            posting
+            LEFT JOIN tagpos ON tagpos.pid = posting.id
+            LEFT JOIN tags ON tags.id = tagpos.tid
+        WHERE
+            likes.uid = 1
+            AND posting.id = likes.postingId
+    </select>
+    <select id="getMyPosting" resultMap="getAllPosting">
+         SELECT
+            pos.*,
+            tags.id tid,
+            tags.tagName,
+            account.id aid,
+            account.username likeUsername
+        FROM
+            posting pos
+            LEFT JOIN likes ON likes.postingId = pos.id
+            LEFT JOIN account ON likes.uid = account.id
+            LEFT JOIN tagpos tps ON tps.pid = pos.id
+            LEFT JOIN tags ON tags.id = tps.tid
+        WHERE
+            pos.uid = #{uid}
+        ORDER BY
+            pos.id
+    </select>
+    <select id="getMyComPosting" resultMap="getAllPosting">
+        SELECT
+        posting.*,
+        comments.id cid,
+         comments.time comtime,
+         comments.context context,
+        comments.uid cuid,
+        account.id aid,
+        account.username likeUsername,
+        tags.id tid,
+        tagName
+        FROM
+        posting LEFT JOIN likes ON likes.postingId = posting.id
+        LEFT JOIN account on account.id = likes.uid
+        LEFT JOIN tagpos ON posting.id = tagpos.pid
+        LEFT JOIN tags on tags.id = tagpos.tid
+        JOIN comments
+        WHERE
+        comments.uid = 1
+        AND
+        posting.id = comments.postingId
+
     </select>
 
 

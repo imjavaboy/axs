@@ -4,9 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--接口名称-->
 <mapper namespace="com.gbq.axs.axsxcs.mapper.DealingMapper">
+    <update id="updateStatus">
+        update dealing set status=0 where id = #{did}
+    </update>
+    <update id="updateStus">
+        update dealing
+        set status = 1
+        where
+        id = #{bid}
+    </update>
 
     <select id="getAllDealing" resultType="com.gbq.axs.axsxcs.pojo.Dealing">
-        select * from dealing
+        select * from dealing where  dealing.status > 0
     </select>
     <select id="getDealingById" resultType="com.gbq.axs.axsxcs.pojo.Dealing">
 
@@ -20,6 +29,58 @@
         WHERE
             dealing.uid = account.id
             AND dealing.id = #{id}
+        order by dealing.id
+    </select>
+    <select id="getShopList" resultType="com.gbq.axs.axsxcs.pojo.Dealing">
+        select * from dealing where  uid = #{uid} and status>0
+    </select>
+    <select id="getMycart" resultType="com.gbq.axs.axsxcs.pojo.Dealing">
+       SELECT
+            dealing.*,
+            account.headimg,
+            account.username
+        FROM
+            cart,
+            dealing,
+            account
+        WHERE
+            cart.uid = #{uid}
+            AND cart.dealingId = dealing.id
+            AND dealing.uid = account.id
+        order by dealing.id
+    </select>
+    <select id="getMyPurchase" resultType="com.gbq.axs.axsxcs.pojo.Dealing">
+        SELECT
+        dealing.*,
+        buying.status buyingStatus,
+         account.headimg,
+        account.username,
+         buying.id bid
+        from
+        buying,
+        dealing,
+        account
+        WHERE
+        dealing.id = buying.dealingId
+        and
+        buying.uid = #{uid}
+        AND dealing.uid = account.id
+    </select>
+    <select id="getMySell" resultType="com.gbq.axs.axsxcs.pojo.Dealing">
+       SELECT
+            dealing.*,
+            buying.STATUS buyingStatus,
+            account.username,
+            account.headimg,
+            buying.id bid
+        FROM
+            buying,
+            dealing,
+            account
+        WHERE
+            buying.dealingId = dealing.id
+            AND buying.uid = account.id
+            AND dealing.uid = #{uid}
     </select>
 
 </mapper>

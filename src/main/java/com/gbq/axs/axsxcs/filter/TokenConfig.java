@@ -25,6 +25,13 @@ public class TokenConfig implements WebMvcConfigurer {
         registration.excludePathPatterns(    //添加不拦截路径
                 "/account/login",                    //登录路径
                 "/register",
+                "/account/getAccount",
+                "/account/login/userpass",
+                "/dealing/getAllDealing",
+                "/dealing/getDealingById",
+                "/dealing/searchDealing",
+                "/posting/getAllPosting",
+                "/posting/getPostingById",
                 "/captcha",
                 "/doc.html/**",
                 "/*.html",                //html静态资源

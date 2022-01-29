@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--接口名称-->
+<mapper namespace="com.gbq.axs.axsxcs.mapper.ChattingMapper">
+
+    <resultMap id="chatList" type="com.gbq.axs.axsxcs.pojo.Chatting">
+        <id column="id" property="id"/>
+        <result column="buyUserId" property="buyUserId"/>
+        <result column="havUserId" property="havUserId"/>
+        <result column="content" property="content"/>
+        <result column="time" property="time"/>
+       <association property="sendAccount" javaType="com.gbq.axs.axsxcs.pojo.Account">
+           <id column="sendId" property="id"/>
+           <result column="sendHeadimg" property="headimg"/>
+           <result column="sendUsername" property="username"/>
+       </association>
+        <association property="toAccount" javaType="com.gbq.axs.axsxcs.pojo.Account">
+            <id column="toId" property="id"/>
+            <result column="toHeadimg" property="headimg"/>
+            <result column="toUsername" property="username"/>
+        </association>
+    </resultMap>
+
+    <select id="getChatList" resultMap="chatList">
+     SELECT
+            ch.*,
+            max( ch.time ) maxtime,
+            a1.id sendId,
+            a1.headimg sendHeadimg,
+            a1.username sendUsername,
+            a2.id toId,
+            a2.headimg toHeadimg,
+            a2.username toUsername
+        FROM
+            ( SELECT * FROM chatting ORDER BY time DESC LIMIT 1000 ) ch
+            LEFT JOIN account a1 ON ch.buyUserId = a1.id
+            LEFT JOIN account a2 ON ch.havUserId = a2.id
+        WHERE
+            ch.havUserId = #{uid}
+            OR ch.buyUserId = #{uid}
+        GROUP BY
+            ch.havUserId,
+            ch.buyUserId
+        ORDER BY
+            ch.time
+
+    </select>
+    <select id="getChatListToSomeone" resultType="com.gbq.axs.axsxcs.pojo.Chatting">
+        SELECT
+            chatting.*,
+             account.id buyId,
+            account.headimg buyHeadImg,
+            account.username buyUsername
+        FROM
+            chatting
+            LEFT JOIN account ON chatting.buyUserId = account.id
+        WHERE
+            (( buyUserId = #{from} AND havUserId = #{to} )
+            OR (
+                buyUserId = #{to}
+            AND havUserId = #{from}))
+
+        order by chatting.time
+    </select>
+</mapper>

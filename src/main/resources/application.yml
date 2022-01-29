@@ -1,9 +1,9 @@
 server:
-  port: 8888
+  port: 8011
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://8.140.125.78:3306/axs?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://8.140.125.78:3306/axs?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&characterEncoding=UTF-8
     username: root
     password: 123456
     hikari:
@@ -23,6 +23,13 @@ spring:
       connection-timeout: 30000
       # 测试连接是否可用的查询语句
       connection-test-query: SELECT 1
+  servlet:
+    multipart:
+      enabled: true
+      max-request-size: 5MB
+      max-file-size: 5MB
+
+
 # Mybatis-plus配置
 mybatis-plus:
   #配置Mapper映射文件
@@ -45,6 +52,15 @@ jwt:
   # Jwt加密秘钥
   secret: yeb-secret
   # Jwt 的超期限时间（60*60）*24
-  expiration: 86400000
+  expiration: 86400000000
   # Jwt负载中拿到开头
   tokenHead: Bearer
+aliyun:
+  oss:
+    file:
+      endpoint: https://oss-cn-beijing.aliyuncs.com
+      keyid: LTAI5tKrTi1dfKvZ7TuMQWJd
+      keysecret: ynk6dFhCrR69xErZ062gsbEFexqmDJ
+      bucketname: guobenqioos
+      urll: gcyang.top
+

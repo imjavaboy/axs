@@ -29,8 +29,8 @@ public class Posting implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
     @ApiModelProperty("创建时间")
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
-    private LocalDate time;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "Asia/Shanghai")
+    private Date time;
     private Integer uid;
     @ApiModelProperty("帖子内容")
     private String content;
@@ -59,5 +59,8 @@ public class Posting implements Serializable {
     @ApiModelProperty("所有点赞人")
     @TableField(exist = false)
     private List<Account> likeAccounts;
+
+    @TableField(exist = false)
+    private Integer tagsId;
 
 }

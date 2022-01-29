@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--接口名称-->
+<mapper namespace="com.gbq.axs.axsxcs.mapper.TagsPosMapper">
+
+    <delete id="deleteByIds">
+        delete from tagpos where pid = #{pid}
+    </delete>
+</mapper>

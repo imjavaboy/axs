@@ -66,11 +66,19 @@ public class AccountController {
         return ResBean.success("登录成功",map);
     }
 
+
+    @ApiOperation("登录返回")
+    @PostMapping("/login/userpass")
+    public ResBean loginByUser(@RequestBody Account wxUser){
+//        System.out.println(wxUser);
+        return accountService.loginByUser(wxUser);
+
+    }
+
     @ApiOperation("获取用户信息")
     @GetMapping("/getAccount")
     public ResBean getAccount(Integer id){
         return accountService.getAccount(id);
-
     }
 
 }

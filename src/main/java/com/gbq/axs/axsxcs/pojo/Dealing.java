@@ -21,7 +21,7 @@ public class Dealing {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "Asia/Shanghai")
     private Date time;
     private Integer uid;
     private String content;
@@ -39,4 +39,8 @@ public class Dealing {
 
     @TableField(exist = false)
     private String headimg;
+    @TableField(exist = false)
+    private Integer buyingStatus;
+    @TableField(exist = false)
+    private Integer bid;
 }

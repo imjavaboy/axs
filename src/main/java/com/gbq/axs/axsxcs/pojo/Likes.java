@@ -4,10 +4,10 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import sun.util.resources.LocaleData;
 
 import java.util.Date;
 import java.util.List;
@@ -20,6 +20,7 @@ public class Likes {
     private Integer id;
     private Integer uid;
     private Integer postingId;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "Asia/Shanghai")
     private Date time;
 
     @ApiModelProperty("点赞人")

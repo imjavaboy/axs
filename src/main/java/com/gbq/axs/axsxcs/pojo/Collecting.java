@@ -5,13 +5,15 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @TableName("collecting")
 public class Collecting {
     @TableId(value = "id", type = IdType.AUTO)
-    private long id;
-    private String username;
-    private long dealing;
+    private Integer id;
+    private Integer uid;
+    private Integer dealingId;
 }

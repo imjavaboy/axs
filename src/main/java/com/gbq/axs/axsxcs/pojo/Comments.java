@@ -25,8 +25,8 @@ public class Comments {
     private Integer postingId;
     private String context;
 
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
-    private LocalDate time;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "Asia/Shanghai")
+    private Date time;
 
     @ApiModelProperty("评论人")
     @TableField(exist = false)

@@ -26,9 +26,8 @@ public class Account implements Serializable {
     private String username;
     @ApiModelProperty(value = "性别")
     private int sex;
-    @ApiModelProperty(value = "出生日期")
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
-    private String birthday;
+    @ApiModelProperty(value = "手机号")
+   private String tel;
     @ApiModelProperty(value = "头像")
     private String headimg;
     @ApiModelProperty(value = "学院专业")
@@ -43,5 +42,7 @@ public class Account implements Serializable {
     private String city;
     @ApiModelProperty(value = "创建时间")
     private Date creteTime;
+    @ApiModelProperty("密码")
+    private String password;
 
 }
