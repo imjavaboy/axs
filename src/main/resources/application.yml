@@ -55,12 +55,5 @@ jwt:
   expiration: 86400000000
   # Jwt负载中拿到开头
   tokenHead: Bearer
-aliyun:
-  oss:
-    file:
-      endpoint: https://oss-cn-beijing.aliyuncs.com
-      keyid: LTAI5tKrTi1dfKvZ7TuMQWJd
-      keysecret: ynk6dFhCrR69xErZ062gsbEFexqmDJ
-      bucketname: guobenqioos
-      urll: gcyang.top
+
 
